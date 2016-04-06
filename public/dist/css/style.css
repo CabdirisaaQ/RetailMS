@@ -1,0 +1,132 @@
+/*!
+ *   Retail Management System V1.0
+ *   Author: A.I Jama
+ *   License: Open source - MIT
+ *   Especial thanks to Almsaeed Studio
+ *   Website: Almsaeed Studio <http://almsaeedstudio.com>
+ *           Please visit http://opensource.org/licenses/MIT for more information
+!*/
+/*
+ * Page: Login
+ * ----------------------
+ */
+.login-page{
+  background: #3c8dbc;
+}
+.login-box {
+  width: 440px;
+  margin: 7% auto;
+}
+@media (max-width: 768px) {
+  .login-box{
+    width: 90%;
+    margin-top: 20px;
+  }
+}
+.login-logo {
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 300;
+  color: white;
+}
+.login-box-body{
+  background: #fff;
+  padding: 20px;
+  border-top: 0;
+  color: #666;
+}
+.login-box-body .form-control-feedback,{
+  color: #777;
+}
+.login-box-msg{
+  margin: 0;
+  text-align: center;
+  padding: 0 20px 20px 20px;
+}
+
+.navbar-default {
+    background-color: #3c8dbc;
+    border-color: #187AB3;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-brand:hover {
+    color: #FFF;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navbar-nav {
+  padding-top: 18px;
+}
+/* START OF Change the Navbar Colors/Font/Size */
+/* Adjust Menu (white) text color, (Garamond) font-family, (1.5em) font-size  */
+.navbar .nav > li > a, .navbar .nav > li > a:first-letter,
+.navbar .nav > li.current-menu-item > a, 
+.navbar .nav > li.current-menu-ancestor > a {
+display:        inline;
+color:          white;                        
+font-size:      1em;
+font-weight: bold;
+padding:        5px 20px;
+}
+ 
+/* Adjust Menu colors - Normal */
+.navbar .nav > li > a, .navbar .nav > li > a:first-letter {
+color:          #FFF;
+text-shadow:    none;
+}
+/* Adjust Menu colors - Hover */
+.navbar .nav > li > a:hover, .navbar .nav > li > a:hover:first-letter { 
+color:          #000;                      
+text-shadow:    none;
+background-color: #fff; 
+}
+
+ 
+/* END OF Change the Navbar Colors/Font/Size */
+/* Purchase Details*/
+
+.previewbtn {
+  position: relative;
+  left: 390px;
+  top: 20px;
+}
+.next {
+  position: relative;
+  left: 280px;
+  top: 69px;
+}
+/*--------------------------------------------------
+//             sales window
+--------------------------------------------------*/
+.sales-window {
+    border: 3px solid #3C8DBC;
+}
+@media (min-width: 768px){
+  #left {
+    position: absolute;
+    overflow-y: scroll; 
+  }
+  
+  #right {
+    position: absolute;
+    overflow-y: scroll;
+  }
+}
+
+#left {
+  height:100%;
+}
+
+#right {
+  height:1000%;
+
+}
+/*-------- Reports------*/
+
+.invoice-header {
+  text-align: center;
+  background: blue;
+}
