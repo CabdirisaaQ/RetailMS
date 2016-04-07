@@ -1,27 +1,31 @@
-# Laravel PHP Framework
+<h1>In The Name Of Allah</h1>
+<h3>Project Name : RetailMS (Retail Management System)</h3>
+This is a small point of sell that I've was working it for a while and it has the folling features
+- Staff management
+- purchasing 
+- invontery 
+- point of sell
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+<h3>Installation</h3>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+upon the installing, configuring and downloading the dependenceis; make sure to create one dummy recond in purchase table. for sales table also make one record and make sure to fill the zReport feild. 
+for more help I've added the sql script for the table in the project folder
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
 
-## Official Documentation
+<h3>Contributing</h3>
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Fork it!
+Create your feature branch: git checkout -b my-new-feature
+Commit your changes: git commit -am 'Add some feature'
+Push to the branch: git push origin my-new-feature
+Submit a pull request :D
 
-## Contributing
+<h3>Credits</h3>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+I thanks Mr. Alex garett for his youtube tutorial amd please make sure to subscrip into his youtube channel.
 
-## Security Vulnerabilities
+<h3>License</h3>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+Apache License
+Version 2.0, January 2004
+http://www.apache.org/licenses/
