@@ -94,7 +94,6 @@ $(document).ready(function() {
 
 	        $('#itemId').val(item_id);
 	        $('#item-save-btn').val("update");
-	       // $('form#editItem').attr('action',url + '/sales/editItem/' + item_id);
 
 	        document.getElementById("edit-qty-txt").focus();
 	        $('#myModal').modal('show');
@@ -115,7 +114,6 @@ $(document).ready(function() {
 	    var formData = {
 	        unitPrice: $('#edit-unitPrice-txt').val(),
 	        qty: $('#edit-qty-txt').val(),
-	        //item_id: $('#itemId').val(),
 	    }
 
 	    //used to determine the http verb to use [add=POST], [update=PUT]
@@ -265,7 +263,6 @@ $(document).ready(function() {
 	// Show Transaction history
 	$('#transaction-History').click(function(){
 	    console.log('transaction History triggered');
-	    //var item_id = $(this).attr("data");
 	   //  console.log(item_id);
 
 	    // prepare the markup
@@ -277,8 +274,6 @@ $(document).ready(function() {
 
 	    $.get(url + '/sales/transactionHistory', function (data) {
 	       console.log(data);
-
-    		//var item = '<tr class="item" data="' + data.id + '"><td>' + data.item + '</td><td>' + data.unitPrice + '</td><td>' + data.qty + '</td><td>' + data.total + '</td></tr>';
 
 	      // var sum = 0;
 	       for (i = 0; i < data.length; i++) { 
@@ -299,7 +294,6 @@ $(document).ready(function() {
 	  	   markup += '</tbody></table>';
 
 	  	   	$('.modal-body').html(markup);
-	      //  $('.bill').html('$  ' + sum);
 	       $('#transaction-history-modal').modal('show');
 
 	    }) 
@@ -315,13 +309,11 @@ $(document).ready(function() {
 	    $.get(url + '/sales/getZReport', function (data) {
 			window.open(url + '/', '_blank');
 	     //  console.log(data);
-	       // var sum = 0;
 	       for (i = 0; i < data.length; i++) { 
 	       	 // console.log(data[i].username);
 	           markup += '<option value="'+data[i].username+'">'+data[i].username+'</option>';
 	       }
 
-	       // $('#GetZReportform').attr('action',url + '/sales/ZReport');
 	        $('#usersList').html(markup);
 	        $('#GetZReport-modal').modal('show');
 

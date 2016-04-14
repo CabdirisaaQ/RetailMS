@@ -377,12 +377,6 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware'=>	['auth'],
 	]);
 
-	/*Route::post('/sales/transactionHistory', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@getTransactionHistory',
-		'as'		=> 'transactionHistory',
-		'middleware'=>	['auth'],
-	]);*/
-
 	// get z report
 	Route::get('/sales/getZReport', [
 		'uses'  	=> '\Retailms\Http\Controllers\SaleController@getZReport',
@@ -400,13 +394,6 @@ Route::group(['middleware' => ['web']], function () {
 	/*------------------------------------------------------------------------
 	//  Report printing
 	------------------------------------------------------------------------*/
-	/*Route::get('/sales/{invoice}', function ($invoiceId) {
-    
-    	return Auth::user()->downloadInvoice($invoiceId, [
-       		 'vendor'  => 'Your Company',
-        	 'product' => 'Your Product',
-    ]);*/
-
 	
 	// invoice printing
 	Route::post('/sales/invoice/{receiptNo}', [
@@ -427,28 +414,5 @@ Route::group(['middleware' => ['web']], function () {
     	'as' => 'sales.ZReport.report',
     	'middleware' =>['auth'],
     ]);
-
-
-	/*// search by id
-	// Purchase an existing item
-	Route::get('/admin/product/purchase2',[
-		'uses' => '\Retailms\Http\Controllers\ProductController@edit',
-		'as'   => 'admin.product.purchase2',
-		'middleware'	=> ['admin'],
-	]);
-
-	Route::post('/admin/product/purchase2',[
-		'uses' => '\Retailms\Http\Controllers\ProductController@update',
-		'middleware'	=> ['admin'],
-	]);*/
-	/*
-
-
-	// Delete vendor
-	Route::delete('/admin/product/{id}',[
-		'uses' => '\Retailms\Http\Controllers\ProductController@destroy',
-		'as'   => 'admin.product.deleteVendor',
-		'middleware'	=> ['admin'],
-	]);*/
 
 });
