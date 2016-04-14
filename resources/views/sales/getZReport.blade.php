@@ -1,4 +1,4 @@
-<div id="GetZReport-modal" class="modal" role="dialog">
+<div id="GetZReport-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
 
     <!-- Modal content-->

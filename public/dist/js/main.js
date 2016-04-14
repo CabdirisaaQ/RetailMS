@@ -61,6 +61,7 @@ $(document).ready(function() {
 	
 	// search item by barcode
 	$('#searchItem').keypress(function(){
+	 	//console.log('search item triggered');
 	    var barcode = $(this).val();
 	   console.log(barcode);
 
@@ -77,6 +78,7 @@ $(document).ready(function() {
 
 	//display modal form for task editing
 	$('.item').click(function(){
+	 // console.log('item triggered');
 	    var item_id = $(this).attr("data");
 	  //  console.log(item_id);
 
@@ -101,6 +103,7 @@ $(document).ready(function() {
 
 	//create new task / update existing task
 	$("#item-save-btn").click(function (e) {
+	   console.log('item save btn triggered');
 	    $.ajaxSetup({
 	        headers: {
 	            'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
@@ -157,7 +160,8 @@ $(document).ready(function() {
 	
 	//delete task and remove it from list
 	$('#item-delete-btn').click(function(e){
-		$.ajaxSetup({
+		console.log('delete item btn triggered');
+		/*$.ajaxSetup({
 	        headers: {
 	            'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
 	        }
@@ -180,12 +184,13 @@ $(document).ready(function() {
 	        error: function (data) {
 	            console.log('Error:', data);
 	        }
-	    });
+	    });*/
 	});
 
 	//delete task and remove it from list
 	$('#item-uom-btn').click(function(e){
-		var item_id = $('#itemId').val();
+		console.log('change uom triggered');
+		/*var item_id = $('#itemId').val();
 		//console.log(item_id);
 
         $.ajaxSetup({
@@ -208,22 +213,24 @@ $(document).ready(function() {
             error: function (data) {
                 console.log('Error:', data);
             }
-        });
+        });*/
 	});
 
 	//delete task and remove it from list
 	$('#item-return-btn').click(function(){
-		console.log('wakaa wakaa');
+		console.log('return item btn triggered');
+		/*console.log('wakaa wakaa');
 
         $.get(url + '/sales/returnItem', function (data) {
 	        console.log(data);
          	$("body").load('/');
-	    })
+	    })*/
 	});
 
 	// Priveiw Bill
 	$('#bill').click(function(){
-	    var item_id = $(this).attr("data");
+	   console.log('bill btn triggered');
+	   /* var item_id = $(this).attr("data");
 	  //  console.log(item_id);
 
 	    $.get(url + '/sales/bill', function (data) {
@@ -241,22 +248,23 @@ $(document).ready(function() {
 	        $('.bill').html('$  ' + parseFloat(sum));
 	        $('#myBill').modal('show');
 
-	    }) 
+	    }) */
 	});
 
 	// Generate Bill
 	$('#bill-ok-btn').click(function() {
-
-		$.get(url + '/sales/saveOrder', function (data) {
+		console.log('save bill btn triggered');
+		/*$.get(url + '/sales/saveOrder', function (data) {
 	       console.log(data);
 	       $("body").load('/');
 	       $('#myBill').modal('hide');
-	    }) 
+	    }) */
 	});
 
 	// Show Transaction history
 	$('#transaction-History').click(function(){
-	    //var item_id = $(this).attr("data");
+	    console.log('transaction History triggered');
+	    /*//var item_id = $(this).attr("data");
 	   //  console.log(item_id);
 
 	    // prepare the markup
@@ -293,14 +301,17 @@ $(document).ready(function() {
 	      //  $('.bill').html('$  ' + sum);
 	       $('#transaction-history-modal').modal('show');
 
-	    }) 
+	    }) */
 	});
 
 	
 	// Z-report prompot
 	$('#GetZReport').click(function(){
-
-	   var markup = '';
+		console.log('...........getZReport triggered');
+		//$("body").load('/');
+		/*$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();*/
+	   /*var markup = '';
 	  // console.log('GetZReport');
 
 	    $.get(url + '/sales/getZReport', function (data) {
@@ -316,7 +327,7 @@ $(document).ready(function() {
 	        $('#usersList').html(markup);
 	        $('#GetZReport-modal').modal('show');
 
-	    }) 
+	    }) */
 	   
 	});
 
@@ -326,7 +337,7 @@ $(document).ready(function() {
 		// printPurchaseHistory
 		$.get(url + '/admin/purchase/printPurchaseHistory', function (data) {
 	      console.log(data);
-	     }) 
+	    }) 
 	});
 
 });
