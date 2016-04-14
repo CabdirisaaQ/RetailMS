@@ -305,7 +305,7 @@ $(document).ready(function() {
 
 	    $.get(url + '/sales/getZReport', function (data) {
 			window.open(url + '/', '_blank');
-	      // console.log(data);
+	     //  console.log(data);
 	       // var sum = 0;
 	       for (i = 0; i < data.length; i++) { 
 	       	 // console.log(data[i].username);

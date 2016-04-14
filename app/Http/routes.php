@@ -36,7 +36,7 @@ Route::group(['middleware' => ['web']], function () {
 	 * Home page
 	 */
 	Route::get('/', [
-		'uses' => '\Retailms\Http\Controllers\HomeController@index',
+		'uses' => '\Retailms\Http\Controllers\SaleController@index',
 		'as'   => 'home',
 		//'middleware' =>	['auth'],
 	]);
@@ -307,7 +307,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	// Search barcode
 	Route::get('/sales/searchBarcode/{barcode}', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@searchBarcode',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@searchBarcode',
 		'middleware'=>	['auth'],
 	]);	
 
@@ -318,34 +318,34 @@ Route::group(['middleware' => ['web']], function () {
 
 	// add to curt
 	Route::get('/sales/addToCurt/{description}', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@add',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@add',
 		'as'		=> '/sales/addToCurt',
 		'middleware'=>	['auth'],
 	]);
 
 	// edit item
 	Route::get('/sales/editItem/{id}', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@edit',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@edit',
 		'as'		=> '/sales/editItem',
 		'middleware'=>	['auth'],
 	]);
 
 	Route::post('/sales/editItem/{id}', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@update',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@update',
 		'as'		=> '/sales/editItem',
 		'middleware'=>	['auth'],
 	]);
 
 	// delete item from dummy items
 	Route::delete('/sales/deleteItem/{id}',[
-		'uses' => '\Retailms\Http\Controllers\HomeController@destroy',
+		'uses' => '\Retailms\Http\Controllers\SaleController@destroy',
 		'as'   => '/sales/deleteItem',
 		'middleware'	=> ['auth'],
 	]);
 
 	// change item unit of measure
 	Route::post('/sales/itemUOM/{id}',[
-		'uses' => '\Retailms\Http\Controllers\HomeController@changeUOM',
+		'uses' => '\Retailms\Http\Controllers\SaleController@changeUOM',
 		'as'   => '/sales/itemUOM',
 		'middleware'	=> ['auth'],
 	]);
@@ -357,14 +357,14 @@ Route::group(['middleware' => ['web']], function () {
 
 	// Preview Bill
 	Route::get('/sales/bill', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@bill',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@bill',
 		'as'		=> '/sales/bill',
 		'middleware'=>	['auth'],
 	]);
 
 	// Generate Bill
 	Route::get('/sales/saveOrder', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@save',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@save',
 		'as'		=> '/sales/saveOrder',
 		'middleware'=>	['auth'],
 	]);
@@ -372,34 +372,27 @@ Route::group(['middleware' => ['web']], function () {
 
 	// Show Transaction History
 	Route::get('/sales/transactionHistory', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@getTransactionHistory',
-		'as'		=> 'transactionHistory',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@getTransactionHistory',
+		'as'		=> 'sales.transactionHistory',
 		'middleware'=>	['auth'],
 	]);
 
 	/*Route::post('/sales/transactionHistory', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@getTransactionHistory',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@getTransactionHistory',
 		'as'		=> 'transactionHistory',
 		'middleware'=>	['auth'],
 	]);*/
 
 	// get z report
 	Route::get('/sales/getZReport', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@getZReport',
-		'as'		=> '/sales/getZReport',
-		'middleware'=>	['auth'],
-	]);
-
-	// get z report
-	Route::get('/sales/getZReport', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@getZReport',
-		'as'		=> '/sales/getZReport',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@getZReport',
+		'as'		=> 'sales.getZReport',
 		'middleware'=>	['auth'],
 	]);
 
 	// generate the z report
 	Route::get('/sales/returnItem', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@returnItem',
+		'uses'  	=> '\Retailms\Http\Controllers\SaleController@returnItem',
 		'as'		=> '/sales/returnItem',
 		'middleware'=>	['auth'],
 	]);
@@ -417,21 +410,21 @@ Route::group(['middleware' => ['web']], function () {
 	
 	// invoice printing
 	Route::post('/sales/invoice/{receiptNo}', [
-    	'uses' => '\Retailms\Http\Controllers\HomeController@printInvoice',
-    	'as' => 'invoice',
+    	'uses' => '\Retailms\Http\Controllers\SaleController@printInvoice',
+    	'as' => 'pdf.invoice',
     	'middleware' =>['auth'],
     ]);
     
     Route::post('/sales/ZReport', [
-    	'uses' => '\Retailms\Http\Controllers\HomeController@ZReport',
+    	'uses' => '\Retailms\Http\Controllers\SaleController@ZReport',
     	'as' => '/sales/ZReport',
     	'middleware' =>['auth'],
     ]);
 
     // this is a temproray for testing only
     Route::get('/sales/ZReport/report', [
-    	'uses' => '\Retailms\Http\Controllers\HomeController@reportGen',
-    	'as' => '/sales/ZReport/report',
+    	'uses' => '\Retailms\Http\Controllers\SaleController@reportGen',
+    	'as' => 'sales.ZReport.report',
     	'middleware' =>['auth'],
     ]);
 
