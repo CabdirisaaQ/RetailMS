@@ -27,7 +27,7 @@
                                 <td>
                                     {!! Form::open([
                                                 'method' => 'POST',
-                                                'route' => ['invoice', $line['receiptNo']]
+                                                'route' => ['pdf.invoice', $line['receiptNo']]
                                             ]) !!}
                                                 {!! Form::submit('print Invoice', ['class' => 'btn btn-primary']) !!}
                                     {!! Form::close() !!}
