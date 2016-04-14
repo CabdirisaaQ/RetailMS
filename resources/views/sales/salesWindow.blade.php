@@ -115,11 +115,13 @@
 		<button type="submit" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#selectItem">Select Item</button></br>
 		<button id="bill" type="submit" class="btn btn-primary btn-block btn-lg">Generate Bill</button></br>
         <button type="button" class="btn btn-primary btn-block btn-lg" id="item-return-btn" value="return">Return item</button></BR>
+
 		@if (Auth::user()->isAdmin())
-		<button id="GetZReport" type="submit" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#GetZReport-modal">Z-Report</button></br>
+		<button id="GetZReport" type="submit" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#11111111111GetZReport-modal">Z-Report</button></br>
 		@else
 		<button type="submit" class="btn btn-primary btn-block btn-lg" disabled>Z-Report</button></br>
 		@endif
+
 	</div>
 
 		

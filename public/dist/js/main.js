@@ -156,12 +156,13 @@ $(document).ready(function() {
 	            console.log('Error:', data);
 	        }
 	    });
+
 	});
 	
 	//delete task and remove it from list
 	$('#item-delete-btn').click(function(e){
 		console.log('delete item btn triggered');
-		/*$.ajaxSetup({
+		$.ajaxSetup({
 	        headers: {
 	            'X-CSRF-TOKEN': $('input[name="_token"]').attr('value')
 	        }
@@ -184,13 +185,13 @@ $(document).ready(function() {
 	        error: function (data) {
 	            console.log('Error:', data);
 	        }
-	    });*/
+	    });
 	});
 
 	//delete task and remove it from list
 	$('#item-uom-btn').click(function(e){
 		console.log('change uom triggered');
-		/*var item_id = $('#itemId').val();
+		var item_id = $('#itemId').val();
 		//console.log(item_id);
 
         $.ajaxSetup({
@@ -213,24 +214,24 @@ $(document).ready(function() {
             error: function (data) {
                 console.log('Error:', data);
             }
-        });*/
+        });
 	});
 
 	//delete task and remove it from list
 	$('#item-return-btn').click(function(){
 		console.log('return item btn triggered');
-		/*console.log('wakaa wakaa');
+		console.log('wakaa wakaa');
 
         $.get(url + '/sales/returnItem', function (data) {
 	        console.log(data);
          	$("body").load('/');
-	    })*/
+	    })
 	});
 
 	// Priveiw Bill
 	$('#bill').click(function(){
 	   console.log('bill btn triggered');
-	   /* var item_id = $(this).attr("data");
+	    var item_id = $(this).attr("data");
 	  //  console.log(item_id);
 
 	    $.get(url + '/sales/bill', function (data) {
@@ -248,23 +249,23 @@ $(document).ready(function() {
 	        $('.bill').html('$  ' + parseFloat(sum));
 	        $('#myBill').modal('show');
 
-	    }) */
+	    }) 
 	});
 
 	// Generate Bill
 	$('#bill-ok-btn').click(function() {
 		console.log('save bill btn triggered');
-		/*$.get(url + '/sales/saveOrder', function (data) {
+		$.get(url + '/sales/saveOrder', function (data) {
 	       console.log(data);
 	       $("body").load('/');
 	       $('#myBill').modal('hide');
-	    }) */
+	    }) 
 	});
 
 	// Show Transaction history
 	$('#transaction-History').click(function(){
 	    console.log('transaction History triggered');
-	    /*//var item_id = $(this).attr("data");
+	    //var item_id = $(this).attr("data");
 	   //  console.log(item_id);
 
 	    // prepare the markup
@@ -301,17 +302,14 @@ $(document).ready(function() {
 	      //  $('.bill').html('$  ' + sum);
 	       $('#transaction-history-modal').modal('show');
 
-	    }) */
+	    }) 
 	});
 
 	
 	// Z-report prompot
 	$('#GetZReport').click(function(){
 		console.log('...........getZReport triggered');
-		//$("body").load('/');
-		/*$('body').removeClass('modal-open');
-		$('.modal-backdrop').remove();*/
-	   /*var markup = '';
+	   var markup = '';
 	  // console.log('GetZReport');
 
 	    $.get(url + '/sales/getZReport', function (data) {
@@ -323,11 +321,11 @@ $(document).ready(function() {
 	           markup += '<option value="'+data[i].username+'">'+data[i].username+'</option>';
 	       }
 
-	        $('#GetZReportform').attr('action',url + '/sales/ZReport');
+	       // $('#GetZReportform').attr('action',url + '/sales/ZReport');
 	        $('#usersList').html(markup);
 	        $('#GetZReport-modal').modal('show');
 
-	    }) */
+	    }) 
 	   
 	});
 
