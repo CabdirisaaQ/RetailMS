@@ -36,7 +36,7 @@ Route::group(['middleware' => ['web']], function () {
 	 * Home page
 	 */
 	Route::get('/', [
-		'uses' => '\Retailms\Http\Controllers\SaleController@index',
+		'uses' => '\Retailms\Http\Controllers\HomeController@index',
 		'as'   => 'home',
 		//'middleware' =>	['auth'],
 	]);
@@ -307,7 +307,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	// Search barcode
 	Route::get('/sales/searchBarcode/{barcode}', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@searchBarcode',
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@searchBarcode',
 		'middleware'=>	['auth'],
 	]);	
 
@@ -318,34 +318,34 @@ Route::group(['middleware' => ['web']], function () {
 
 	// add to curt
 	Route::get('/sales/addToCurt/{description}', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@add',
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@add',
 		'as'		=> '/sales/addToCurt',
 		'middleware'=>	['auth'],
 	]);
 
 	// edit item
 	Route::get('/sales/editItem/{id}', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@edit',
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@edit',
 		'as'		=> '/sales/editItem',
 		'middleware'=>	['auth'],
 	]);
 
 	Route::post('/sales/editItem/{id}', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@update',
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@update',
 		'as'		=> '/sales/editItem',
 		'middleware'=>	['auth'],
 	]);
 
 	// delete item from dummy items
 	Route::delete('/sales/deleteItem/{id}',[
-		'uses' => '\Retailms\Http\Controllers\SaleController@destroy',
+		'uses' => '\Retailms\Http\Controllers\HomeController@destroy',
 		'as'   => '/sales/deleteItem',
 		'middleware'	=> ['auth'],
 	]);
 
 	// change item unit of measure
 	Route::post('/sales/itemUOM/{id}',[
-		'uses' => '\Retailms\Http\Controllers\SaleController@changeUOM',
+		'uses' => '\Retailms\Http\Controllers\HomeController@changeUOM',
 		'as'   => '/sales/itemUOM',
 		'middleware'	=> ['auth'],
 	]);
@@ -357,14 +357,14 @@ Route::group(['middleware' => ['web']], function () {
 
 	// Preview Bill
 	Route::get('/sales/bill', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@bill',
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@bill',
 		'as'		=> '/sales/bill',
 		'middleware'=>	['auth'],
 	]);
 
 	// Generate Bill
 	Route::get('/sales/saveOrder', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@save',
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@save',
 		'as'		=> '/sales/saveOrder',
 		'middleware'=>	['auth'],
 	]);
@@ -372,21 +372,40 @@ Route::group(['middleware' => ['web']], function () {
 
 	// Show Transaction History
 	Route::get('/sales/transactionHistory', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@getTransactionHistory',
-		'as'		=> 'sales.transactionHistory',
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@getTransactionHistory',
+		'as'		=> 'transactionHistory',
+		'middleware'=>	['auth'],
+	]);
+
+	Route::get('/sales/checkSales', [
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@checkSales',
+		'as'		=> 'checkSales',
+		'middleware'=>	['auth'],
+	]);
+
+	Route::post('/sales/checkSalesQuery', [
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@checkSalesQuery',
+		'as'		=> 'checkSalesQuery',
 		'middleware'=>	['auth'],
 	]);
 
 	// get z report
 	Route::get('/sales/getZReport', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@getZReport',
-		'as'		=> 'sales.getZReport',
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@getZReport',
+		'as'		=> '/sales/getZReport',
+		'middleware'=>	['auth'],
+	]);
+
+	// get z report
+	Route::get('/sales/getZReport', [
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@getZReport',
+		'as'		=> '/sales/getZReport',
 		'middleware'=>	['auth'],
 	]);
 
 	// generate the z report
 	Route::get('/sales/returnItem', [
-		'uses'  	=> '\Retailms\Http\Controllers\SaleController@returnItem',
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@returnItem',
 		'as'		=> '/sales/returnItem',
 		'middleware'=>	['auth'],
 	]);
@@ -394,25 +413,62 @@ Route::group(['middleware' => ['web']], function () {
 	/*------------------------------------------------------------------------
 	//  Report printing
 	------------------------------------------------------------------------*/
+	/*Route::get('/sales/{invoice}', function ($invoiceId) {
+    
+    	return Auth::user()->downloadInvoice($invoiceId, [
+       		 'vendor'  => 'Your Company',
+        	 'product' => 'Your Product',
+    ]);*/
+
 	
 	// invoice printing
 	Route::post('/sales/invoice/{receiptNo}', [
-    	'uses' => '\Retailms\Http\Controllers\SaleController@printInvoice',
-    	'as' => 'pdf.invoice',
+    	'uses' => '\Retailms\Http\Controllers\HomeController@printInvoice',
+    	'as' => 'invoice',
     	'middleware' =>['auth'],
     ]);
     
     Route::post('/sales/ZReport', [
-    	'uses' => '\Retailms\Http\Controllers\SaleController@ZReport',
+    	'uses' => '\Retailms\Http\Controllers\HomeController@ZReport',
     	'as' => '/sales/ZReport',
+    	'middleware' =>['auth'],
+    ]);
+
+    // This one is for printing Sales report
+    Route::post('/sales/salesReport', [
+    	'uses' => '\Retailms\Http\Controllers\HomeController@salesReport',
+    	'as' => 'sales.salesReport',
     	'middleware' =>['auth'],
     ]);
 
     // this is a temproray for testing only
     Route::get('/sales/ZReport/report', [
-    	'uses' => '\Retailms\Http\Controllers\SaleController@reportGen',
-    	'as' => 'sales.ZReport.report',
+    	'uses' => '\Retailms\Http\Controllers\HomeController@reportGen',
+    	'as' => '/sales/ZReport/report',
     	'middleware' =>['auth'],
     ]);
+
+
+	/*// search by id
+	// Purchase an existing item
+	Route::get('/admin/product/purchase2',[
+		'uses' => '\Retailms\Http\Controllers\ProductController@edit',
+		'as'   => 'admin.product.purchase2',
+		'middleware'	=> ['admin'],
+	]);
+
+	Route::post('/admin/product/purchase2',[
+		'uses' => '\Retailms\Http\Controllers\ProductController@update',
+		'middleware'	=> ['admin'],
+	]);*/
+	/*
+
+
+	// Delete vendor
+	Route::delete('/admin/product/{id}',[
+		'uses' => '\Retailms\Http\Controllers\ProductController@destroy',
+		'as'   => 'admin.product.deleteVendor',
+		'middleware'	=> ['admin'],
+	]);*/
 
 });

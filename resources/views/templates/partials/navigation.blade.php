@@ -10,7 +10,9 @@
                                 @if (Auth::user()->isAdmin())
                                 <li><a href="{{ route('admin.index') }}">Back Office</a></li>
                                 @endif
-                                <li><a href="{{ route('sales.transactionHistory') }}">Invoices</a></li>
+                                <li><a href="{{ route('transactionHistory') }}">Invoices</a></li>
+                                
+                        </ul>
                                 
                         </ul>
                         <ul class="nav navbar-nav navbar-right">

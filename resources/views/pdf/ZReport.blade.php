@@ -1,119 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {{ Html::style('bootstrap/css/bootstrap.css') }}
+    {{ Html::style('dist/css/style.css') }}
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-  {{ Html::style('bootstrap/css/bootstrap.css') }}
-  {{ Html::style('dist/css/style.css') }}
-  <style type="text/css">
-  #invoice-header {
-    text-align: center;
-    padding: 0;
-   }
-  #invoice-header h4 {
-    padding: -3;
-  }
-  #details {
-    /*font-weight: bold;*/
-  } 
- @media print {
-  .table {
-    border-collapse: collapse;
-    width: 100%;
-    border: 1px solid black;
-
- }
-
- .table, th, td {
-    text-align: center;
-    border: 1px solid black;
- }
-}
-  </style>
+    <title>Zreport</title>
   </head>
   <body>
-          
-        <div id="invoice-header">
-          <h4 > <strong>Guul Alle Fuel Station & Supermarket </strong></h4>
-          <h4 > Hargeisa, Somaliland </h4>
-          <h4 > Tel: 51548/4786525 </h4>
-        </div>
-        <br>
-      <div id="details" class="clearfix">
-          <div>Z-report No. : {{ $data['zReport'] }}</div>
-          <div>Date/Time    : {{ $date }}</div>
-          <div>Description  : Transactions for {{ $date }}</div>
-          <div>cashier   : {{ $data['created_by'] }}</div>
-          <div>Manager    : {{ $data['updated_by'] }}</div>
-      </div>
  
-
-<br>
-      <table class="table">
-   
-          <tr>
-            <th></th>
-            <th>Receipts</th>
-            <th>Transactions</th>
-            <th>Total Sales</th>
-          </tr>
-
-          <tr>
-            <td class="no">{{ $data['receiptCount'] }}</td>
-            <td class="desc">{{ $data['transactionCount'] }}</td>
-            <td class="total">${{ $data['total'] }} </td>
-          </tr>
-      </table>
-        <div id="details" class="clearfix">
-        <br>
-        <br>
-            <div>Manager    : {{ $data['updated_by'] }}   ________________________</div> 
-            <br>
-            <div>cashier   : {{ $data['created_by'] }}   ________________________</div>
-            <br>
+    <main>
+      <div id="details" class="row">
+        <div id="invoice">
+          <h1>Zreport {{ $invoice }}</h1>
+          <div class="date">Date of Invoice: {{ $date }}</div>
         </div>
-        
-        <br><br>
-        ----------------------------------------------------------------------------------------------------------------------------------------------
-       <br>
-        <br>
-              <div id="invoice-header">
-                <h4 > <strong>Guul Alle Fuel Station & Supermarket </strong></h4>
-                <h4 > Hargeisa, Somaliland </h4>
-                <h4 > Tel: 51548/4786525 </h4>
-              </div>
-              <br>
-                  <div id="details" class="clearfix">
-          <div>Z-report No. : {{ $data['zReport'] }}</div>
-          <div>Date/Time    : {{ $date }}</div>
-          <div>Description  : Transactions for {{ $date }}</div>
-          <div>cashier   : {{ $data['created_by'] }}</div>
-          <div>Manager    : {{ $data['updated_by'] }}</div>
       </div>
-  
-<br>
-
-      <table class="table">
-   
+      <div class="col-lg-8">
+        
+      <table class="table table-hover table-bordered table-condensed">
+        <thead>
           <tr>
-            <th></th>
-            <th>Receipts</th>
-            <th>Transactions</th>
-            <th>Total Sales</th>
+            <th class="no">#</th>
+            <th class="desc">DESCRIPTION</th>
+            <th class="unit">UNIT PRICE</th>
+            <th class="total">TOTAL</th>
           </tr>
-
+        </thead>
+        <tbody>
+          @foreach ($data as $row)
           <tr>
-            <td class="no">{{ $data['receiptCount'] }}</td>
-            <td class="desc">{{ $data['transactionCount'] }}</td>
-            <td class="total">${{ $data['total'] }} </td>
+            <td class="no">{{ $row['receiptNo'] }}</td>
+            <td class="desc">{{ $row['productId'] }}</td>
+            <td class="unit">{{ $row['unitPrice'] }}</td>
+            <td class="total">{{ $row['total'] }} </td>
           </tr>
+          @endforeach
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"></td>
+            <td >TOTAL</td>
+            <td>$6,500.00</td>
+          </tr>
+        </tfoot>
       </table>
-        <div id="details" class="clearfix">
-        <br>
-            <div>Manager    : {{ $data['updated_by'] }}   ________________________</div> 
-            <br>
-            <div>cashier   : {{ $data['created_by'] }}   ________________________</div>
-            <br>
-        </div>
+      <button class="btn-primary"> good</button>
+      </div>
   </body>
 </html>

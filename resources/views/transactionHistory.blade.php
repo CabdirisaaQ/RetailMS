@@ -6,7 +6,7 @@
     </br>
             <h3>Invoice History</h3>
             <ul>
-                <li>Invoice List</li>
+                <li><a href="{{ route('checkSales') }}">Check Sales</a></li>
             </ul>
                 <table class="table table-hover table-bordered table-condensed" style="font-size:12px;">
                     <thead> 
@@ -27,7 +27,7 @@
                                 <td>
                                     {!! Form::open([
                                                 'method' => 'POST',
-                                                'route' => ['pdf.invoice', $line['receiptNo']]
+                                                'route' => ['invoice', $line['receiptNo']]
                                             ]) !!}
                                                 {!! Form::submit('print Invoice', ['class' => 'btn btn-primary']) !!}
                                     {!! Form::close() !!}

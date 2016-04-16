@@ -14,7 +14,7 @@
     padding: -6;
   }
   #details {
-    //font-weight: bold;
+  	//font-weight: bold;
   }
   .table {
     border-collapse: collapse;
@@ -32,7 +32,11 @@
   </head>
   <body>
           
-{{ $data }}
-          
+        <div id="invoice-header">
+          <h4 > <strong>Guul Alle Fuel Station & Supermarket </strong></h4>
+          <h4 > Hargeisa, Somaliland </h4>
+          <h4 > Tel: 51548/4786525 </h4>
+        </div>
+        <br>
   </body>
 </html>

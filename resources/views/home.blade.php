@@ -3,13 +3,13 @@
 @section('content')
 @if (Auth::check())
 <div id="display" class="row">
-@include('sales.salesWindow')
+@include('salesWindow')
 </div>
-@include('sales.selectItem')	
-@include('sales.editItem')
-@include('sales.salesDetaile');
-@include('sales.bill');
-@include('sales.getZReport');
+@include('selectItem')	
+@include('editItem')
+@include('salesDetaile');
+@include('bill');
+@include('getZReport');
 @else
 
 @include('auth.signin')

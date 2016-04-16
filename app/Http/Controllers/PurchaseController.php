@@ -241,7 +241,7 @@ class PurchaseController extends Controller
 
          $report = new PdfController();
 
-         $reportType = 'pdf.purchaseOrder';
+         $reportType = 'purchaseOrder';
          $reportName = 'Purchase Order-' . date('d-m-Y');
         
          //dd($record);

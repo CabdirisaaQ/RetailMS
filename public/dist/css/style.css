@@ -101,10 +101,6 @@ background-color: #fff;
 /*--------------------------------------------------
 //             sales window
 --------------------------------------------------*/
-.modal-backdrop
-{
-    opacity:0.5 !important;
-}
 .sales-window {
     border: 3px solid #3C8DBC;
 }
