@@ -58,7 +58,6 @@
               <th>Casheir</th>
               <th>Manager</th>
             </tr>
-
           @foreach ($data as $line)
               <tr> 
                   <td>{{ $line['updated_at'] }}</td> 
@@ -69,25 +68,19 @@
                   <td>{{ $line['updated_by'] }}</td>
               </tr> 
           @endforeach
-        @if($total == NULL)
-          <tr> 
-            <td></td> 
-            <td></td> 
-            <td>{{ $total['itemCount'] }}</td> 
-            <td><strong>{{ $total['totalCount'] }}</strong></td> 
-            <td></td>
-            <td></td>
-          </tr>
-        @else
-          <tr> 
-            <td></td> 
-            <td></td> 
-            <td>{{ $total['itemCount'] }}</td> 
-            <td><strong>{{ $total['totalCount'] }}</strong></td> 
-                        <td></td>
-            <td></td>
-          </tr>
-        @endif
       </table>
+      <br>
+      <br>
+        @if($total == NULL)
+          <div>qiimihii aad bagaashka ku iibisay      : $0</div>
+          <div>qiimaha ay bagaashku kugu taagnayd     : $0</div>
+          <div>bagaashka baxay                        :  0 PCS</div>
+          <div>bagaashka yaala                        :  0 PCS</div>
+        @else
+          <div>qiimihii aad bagaashka ku iibisay      : ${{ $total['totalCount'] }}</div>
+      <div>qiimaha ay bagaashku kugu taagnayd     : ${{ $total['stockOut'] }}</div>
+      <div>bagaashka baxay                        :  {{ $total['itemCount'] }} PCS</div>
+      <div>Goodes available for sall               :  {{ $total['stockIn'] }} PCS</div>
+        @endif
   </body>
 </html>

@@ -372,6 +372,11 @@ class HomeController extends Controller
                      ->whereBetween('updated_at', [date("Y-m-d h:i:s", $from), date("Y-m-d h:i:s", $to)])
                      ->get();
 
+      // dd($sales->isEmpty());
+        if ($sales->isEmpty()) {
+            return View('checkSales');
+        }
+
         // assign the first purchaseNo in the list
         $zReport[0] = $sales[0]['zReport'];
 
@@ -393,8 +398,46 @@ class HomeController extends Controller
              $totalCount += $List[$i]['total'];
         }
 
+        // calculate the remaing stock valuation 
+        $stock = Product::all();
+        $stockIn = '';
+        $sum = '';
+
+        for ($i=0; $i < sizeof($stock) ; $i++) { 
+            $sum = $stock[$i]['itemInStock'] * $stock[$i]['itemPrice'];
+            $stockIn += $sum;
+        }
+
+        // calculate the stock which had been selled out 
+        //dd($sales);
+        //$selledStock = Sale::all();
+        $stockOut = '';
+        $sum = '';
+
+        for ($i=0; $i < sizeof($sales) ; $i++) { 
+
+                $productList = Product::where('id',$sales[$i]['productId'])->get();
+
+            if ($sales[$i]['uom'] == 'pcs') {
+                $sum = $sales[$i]['qty'] * $productList[0]['itemPrice'];
+                $stockOut += $sum;
+            } else {
+                $sum = ($sales[$i]['qty'] * $productList[0]['quantityPerUnit']) * $productList[0]['itemPrice'];
+                $stockOut += $sum;
+            }
+            
+            //$sum = $stock[$i]['itemInStock'] * $stock[$i]['itemPrice'];
+            //$stockValue += $sum;
+        }
+
+
+        // dd($stockIn);
+        // //dd($stockValue);
+
         $count['itemCount'] = $itemCount;
+        $count['stockOut'] = $stockOut;
         $count['totalCount'] = $totalCount;
+        $count['stockIn'] = $stockIn;
 
         $report = new PdfController();
 
