@@ -383,12 +383,6 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware'=>	['auth'],
 	]);
 
-	Route::post('/sales/checkSalesQuery', [
-		'uses'  	=> '\Retailms\Http\Controllers\HomeController@checkSalesQuery',
-		'as'		=> 'checkSalesQuery',
-		'middleware'=>	['auth'],
-	]);
-
 	// get z report
 	Route::get('/sales/getZReport', [
 		'uses'  	=> '\Retailms\Http\Controllers\HomeController@getZReport',

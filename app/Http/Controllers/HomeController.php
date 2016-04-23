@@ -284,91 +284,8 @@ class HomeController extends Controller
     // show transaction-History
 
     public function checkSales()
-    {
-        // get all sales order's receiptNo
-        $sales = Sale::whereNotNull('zReport')
-                        ->orderBy('zReport','asc')
-                        ->get();
-       // dd($sales);
-        
-        // assign the first purchaseNo in the list
-        $zReport[0] = $sales[0]['zReport'];
-        //$zReport = array();
-
-        // loop through all the purchaseNo and extract the indivduall purchase order
-        for ($i=1; $i < sizeof($sales) ; $i++) { 
-            // skip if the purchaseNo is duplicated
-            if ($sales[$i]['zReport'] === $sales[$i-1]['zReport'] || $sales[$i]['zReport'] == NULL) {
-                continue;
-            }
-            // push the result in to the array
-            array_push($zReport,$sales[$i]['zReport']);
-        }
-       //dd($zReport);
-
-
-        // so based on the zReport, get the details
-        for ($i=0; $i < sizeof($zReport) ; $i++) { 
-            // push the result in to the array
-            $List[$i] = $this->getSalesInfo($zReport[$i]);
-        }
-
-        //dd($List);
-        // load the view and pass the vendor
-        //return $List[0];
-        return View('checkSales')
-            ->with('List', $List);
-    }
+    { return View('checkSales'); }
     
-
-    public function checkSalesQuery(Request $request)
-    {
-        
-        $this->validate($request, [
-                    'from'    => 'required',          
-                    'to'    => 'required',          
-        ]);
-
-        $from = strtotime($request->input('from'));
-        $to = strtotime($request->input('to'));
-        
-        $sales = Sale::whereNotNull('zReport')
-                        ->orderBy('zReport','asc')
-                        ->whereBetween('updated_at', [date("Y-m-d h:i:s", $from), date("Y-m-d h:i:s", $to)])
-                        ->get();
-
-        // dd($sales);
-        
-        // assign the first purchaseNo in the list
-        $zReport[0] = $sales[0]['zReport'];
-        //$zReport = array();
-
-        // loop through all the purchaseNo and extract the indivduall purchase order
-        for ($i=1; $i < sizeof($sales) ; $i++) { 
-            // skip if the purchaseNo is duplicated
-            if ($sales[$i]['zReport'] === $sales[$i-1]['zReport'] || $sales[$i]['zReport'] == NULL) {
-                continue;
-            }
-            // push the result in to the array
-            array_push($zReport,$sales[$i]['zReport']);
-        }
-       //dd($zReport);
-
-
-        // so based on the zReport, get the details
-        for ($i=0; $i < sizeof($zReport) ; $i++) { 
-            // push the result in to the array
-            $List[$i] = $this->getSalesInfo($zReport[$i]);
-        }
-
-        //dd($List);
-        // load the view and pass the vendor
-        //return $List[0];
-        return View('checkSales')
-            ->with('List', $List);
-                    
-    }
-
     // get the sales info
 
     public function getSalesInfo($zReport)
@@ -437,23 +354,56 @@ class HomeController extends Controller
             ->with('List', $List);
     }
 
-    public function salesReport($List)
+    public function salesReport(Request $request)
     {
-        /*$report = new PdfController();
+        $itemCount = 0;
+        $totalCount = 0;
 
-        //$report->getData($record);
+        $this->validate($request, [
+                 'from'    => 'required',          
+                 'to'    => 'required',          
+        ]);
+
+        $from = strtotime($request->input('from'));
+        $to = strtotime($request->input('to'));
+
+        $sales = Sale::whereNotNull('zReport')
+                     ->orderBy('zReport','asc')
+                     ->whereBetween('updated_at', [date("Y-m-d h:i:s", $from), date("Y-m-d h:i:s", $to)])
+                     ->get();
+
+        // assign the first purchaseNo in the list
+        $zReport[0] = $sales[0]['zReport'];
+
+        // loop through all the purchaseNo and extract the indivduall purchase order
+        for ($i=1; $i < sizeof($sales) ; $i++) { 
+         // skip if the purchaseNo is duplicated
+         if ($sales[$i]['zReport'] === $sales[$i-1]['zReport'] || $sales[$i]['zReport'] == NULL) {
+             continue;
+         }
+         // push the result in to the array
+         array_push($zReport,$sales[$i]['zReport']);
+        }
+
+        // so based on the zReport, get the details
+        for ($i=0; $i < sizeof($zReport) ; $i++) { 
+             // push the result in to the array
+             $List[$i]    = $this->getSalesInfo($zReport[$i]);
+             $itemCount  += $List[$i]['item'];
+             $totalCount += $List[$i]['total'];
+        }
+
+        $count['itemCount'] = $itemCount;
+        $count['totalCount'] = $totalCount;
+
+        $report = new PdfController();
 
         $reportType = 'salesReport';
         $reportName = 'salesReport-' . date('d-m-Y');
 
-       // $record = Sale::where('zReport',$zReport)->get();
-       //$record = $List;
-
-       // $report_info = $this->getZReportInfo($record) ;
         $report_info = $List;
-        //dd($report_info);
 
-        return $report->invoice($report_info,$reportName,$reportType);*/
+        return $report->invoice($report_info,$reportName,$reportType,$count);
     }
 
     // get the receipt info
@@ -492,7 +442,6 @@ class HomeController extends Controller
     public function printInvoice(Request $request,$receiptNo)
     {
 
-
        $report = new PdfController();
 
        $reportType = 'invoice';
@@ -511,12 +460,7 @@ class HomeController extends Controller
            $total += $record[$i]['total'];
        }
 
-
-
-
-       //dd($record);
        return $report->invoice($record,$reportName,$reportType,$total);
-    
     }
 
     public function getZReport()

@@ -6,7 +6,7 @@
   {{ Html::style('bootstrap/css/bootstrap.css') }}
   {{ Html::style('dist/css/style.css') }}
   <style type="text/css">
-   #invoice-header {
+ #invoice-header {
     text-align: center;
     padding: 0;
    }
@@ -29,29 +29,65 @@
     border: 1px solid black;
  }
 }
+ .table, th, td {
+    text-align: center;
+    border: 1px solid black;
+     border-collapse: collapse;
+     width: 100%;
+ }
+ td {
+    height: 10px;
+}
   </style>
   </head>
   <body>
           <div id="invoice-header">
-            <h4 > <strong>Guul Alle Fuel Station & Supermarket </strong></h4>
-            <h4 > Hargeisa, Somaliland </h4>
-            <h4 > Tel: 51548/4786525 </h4>
-            <h4 > Zaad: 415786 , edahab: 987451</h4>
+            <h4 > <strong>Sales Report </strong></h4>
+
           </div>
-          <h3>Purchase Order</h3>
 
-          <br>
-                <table class="table table-condensed" style="boarder:0;">
-                      <tr> 
-                            <td></td>  
-                            <th>Item</th> 
-                            <th>Qty</th>
-                            <th>Unit Price</th> 
-                            <th>Total</th>
-                            <th>Cash</th> 
-                            <th>Credit</th> 
-                        </tr> 
+    <br>     
 
-                    </table> 
+        <table class="table" style="">
+            <tr>
+
+              <th>Date</th>
+              <th>Z-Report No.</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Casheir</th>
+              <th>Manager</th>
+            </tr>
+
+          @foreach ($data as $line)
+              <tr> 
+                  <td>{{ $line['updated_at'] }}</td> 
+                  <td>{{ $line['zReport'] }}</td> 
+                  <td>{{ $line['item'] }}</td> 
+                  <td>${{ $line['total'] }}</td> 
+                  <td>{{ $line['created_by'] }}</td>
+                  <td>{{ $line['updated_by'] }}</td>
+              </tr> 
+          @endforeach
+        @if($total == NULL)
+          <tr> 
+            <td></td> 
+            <td></td> 
+            <td>{{ $total['itemCount'] }}</td> 
+            <td><strong>{{ $total['totalCount'] }}</strong></td> 
+            <td></td>
+            <td></td>
+          </tr>
+        @else
+          <tr> 
+            <td></td> 
+            <td></td> 
+            <td>{{ $total['itemCount'] }}</td> 
+            <td><strong>{{ $total['totalCount'] }}</strong></td> 
+                        <td></td>
+            <td></td>
+          </tr>
+        @endif
+      </table>
   </body>
 </html>
