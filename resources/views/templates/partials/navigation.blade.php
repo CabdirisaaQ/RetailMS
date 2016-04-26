@@ -9,8 +9,9 @@
                         <ul class="nav navbar-nav">
                                 @if (Auth::user()->isAdmin())
                                 <li><a href="{{ route('admin.index') }}">Back Office</a></li>
-                                @endif
+                                @endif  
                                 <li><a href="{{ route('transactionHistory') }}">Invoices</a></li>
+                                <li><a href="{{ route('admin.product.stockReminder') }}">Stock Reminder</a></li>
                                 
                         </ul>
                                 

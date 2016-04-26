@@ -21,7 +21,7 @@
 <body class="login-page">
 <div class="login-box">
     <div class="login-logo">
-      Retail Management System
+      Guul Alla Fuel Station & Supermarket
     </div> <!-- End Login-logo -->
 
     <div class="login-box-body">

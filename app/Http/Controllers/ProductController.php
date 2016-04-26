@@ -24,6 +24,17 @@ class ProductController extends Controller
             ->with('products', $products);
     }
 
+    // view the stock who is about to run
+    public function stockReminder()
+    {   
+        // get all the stock
+        $products = Product::where('itemInStock', '<=' , '10')->get();
+        //dd($products);
+        // load the view and pass the vendor
+        return View('admin.product.stockReminder')
+            ->with('products', $products);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -37,6 +37,14 @@ class HomeController extends Controller
             ->with('dump', $temp_sales_details);
 	}
 
+    public function clearScreen()
+    {
+        //dd('ok i will clean the screen for you');
+        // trancate the dummy table
+        Temp_sale::truncate();
+        return $this->index();
+    }
+
     public function searchBarcode($barcode)
     {
         // find product details based on the description
@@ -356,8 +364,8 @@ class HomeController extends Controller
 
     public function salesReport(Request $request)
     {
-        $itemCount = 0;
-        $totalCount = 0;
+        $goods_finished = 0;
+        $total_sales = 0;
 
         $this->validate($request, [
                  'from'    => 'required',          
@@ -394,24 +402,26 @@ class HomeController extends Controller
         for ($i=0; $i < sizeof($zReport) ; $i++) { 
              // push the result in to the array
              $List[$i]    = $this->getSalesInfo($zReport[$i]);
-             $itemCount  += $List[$i]['item'];
-             $totalCount += $List[$i]['total'];
+             $goods_finished  += $List[$i]['item'];
+             $total_sales += $List[$i]['total'];
         }
 
         // calculate the remaing stock valuation 
         $stock = Product::all();
-        $stockIn = '';
+        $cost_of_goods_available = '';
+        $goods_available = '';
         $sum = '';
 
         for ($i=0; $i < sizeof($stock) ; $i++) { 
             $sum = $stock[$i]['itemInStock'] * $stock[$i]['itemPrice'];
-            $stockIn += $sum;
+            $cost_of_goods_available += $sum;
+            $goods_available += $stock[$i]['itemInStock'];
         }
 
         // calculate the stock which had been selled out 
         //dd($sales);
         //$selledStock = Sale::all();
-        $stockOut = '';
+        $cost_of_goods_finished = '';
         $sum = '';
 
         for ($i=0; $i < sizeof($sales) ; $i++) { 
@@ -420,10 +430,10 @@ class HomeController extends Controller
 
             if ($sales[$i]['uom'] == 'pcs') {
                 $sum = $sales[$i]['qty'] * $productList[0]['itemPrice'];
-                $stockOut += $sum;
+                $cost_of_goods_finished += $sum;
             } else {
                 $sum = ($sales[$i]['qty'] * $productList[0]['quantityPerUnit']) * $productList[0]['itemPrice'];
-                $stockOut += $sum;
+                $cost_of_goods_finished += $sum;
             }
             
             //$sum = $stock[$i]['itemInStock'] * $stock[$i]['itemPrice'];
@@ -431,13 +441,14 @@ class HomeController extends Controller
         }
 
 
-        // dd($stockIn);
+         //dd($cost_of_goods_available . "<< >>". $goods_available);
         // //dd($stockValue);
 
-        $count['itemCount'] = $itemCount;
-        $count['stockOut'] = $stockOut;
-        $count['totalCount'] = $totalCount;
-        $count['stockIn'] = $stockIn;
+        $count['goods_finished'] = $goods_finished;
+        $count['cost_of_goods_finished'] = $cost_of_goods_finished;
+        $count['total_sales'] = $total_sales;
+        $count['cost_of_goods_available'] = $cost_of_goods_available;
+        $count['goods_available'] = $goods_available;
 
         $report = new PdfController();
 

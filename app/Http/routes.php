@@ -180,6 +180,13 @@ Route::group(['middleware' => ['web']], function () {
 		'middleware' => ['admin'],
 	]);
 
+	// stock notification
+	Route::get('/admin/product/stockReminder', [
+		'uses' => '\Retailms\Http\Controllers\ProductController@stockReminder',
+		'as' => 'admin.product.stockReminder',
+		'middleware' => ['auth'],
+	]);
+
 	// Find product details
 	Route::get('/admin/product/stock/{description}', [
 		'uses' => '\Retailms\Http\Controllers\ProductController@findProduct',
@@ -401,6 +408,13 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/sales/returnItem', [
 		'uses'  	=> '\Retailms\Http\Controllers\HomeController@returnItem',
 		'as'		=> '/sales/returnItem',
+		'middleware'=>	['auth'],
+	]);
+
+	// Void all the trancactions in the screen
+	Route::post('/sales/clearScreen', [
+		'uses'  	=> '\Retailms\Http\Controllers\HomeController@clearScreen',
+		'as'		=> 'sales.clearScreen',
 		'middleware'=>	['auth'],
 	]);
 

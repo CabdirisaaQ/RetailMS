@@ -112,7 +112,14 @@
 	</div>
 	<div class="col-lg-4">
 		<a href="{{ route('auth.signout')}}" class="btn btn-primary btn-block btn-lg">Logg Off</a></br>
-		<button type="submit" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#selectItem">Select Item</button></br>
+
+		<form class="form-vertical" role="form" method="post" action="{{ route('sales.clearScreen') }}">  
+		    <div class="">
+		        <button type="submit" class="btn btn-primary btn-block btn-lg">Clear Screen</button>
+		    </div>
+		    <input type="hidden" name="_token" value="{{ Session::token() }}">		    
+		</form></br>
+
 		<button id="bill" type="submit" class="btn btn-primary btn-block btn-lg">Generate Bill</button></br>
         <button type="button" class="btn btn-primary btn-block btn-lg" id="item-return-btn" value="return">Return item</button></BR>
 		@if (Auth::user()->isAdmin())

@@ -77,10 +77,11 @@
           <div>bagaashka baxay                        :  0 PCS</div>
           <div>bagaashka yaala                        :  0 PCS</div>
         @else
-          <div>qiimihii aad bagaashka ku iibisay      : ${{ $total['totalCount'] }}</div>
-      <div>qiimaha ay bagaashku kugu taagnayd     : ${{ $total['stockOut'] }}</div>
-      <div>bagaashka baxay                        :  {{ $total['itemCount'] }} PCS</div>
-      <div>Goodes available for sall               :  {{ $total['stockIn'] }} PCS</div>
+      <div>Goods finished                   :  {{ $total['goods_finished'] }} PCS</div>
+      <div>cost of goods finished           : ${{ $total['cost_of_goods_finished'] }}</div>
+      <div>sales                            : ${{ $total['total_sales'] }}</div>
+      <div>Goodes available for sale       :  {{ $total['goods_available'] }} PCS</div>
+      <div>cost of Goodes available for sall: $ {{ $total['cost_of_goods_available'] }} </div>
         @endif
   </body>
 </html>

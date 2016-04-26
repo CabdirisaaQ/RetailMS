@@ -36,8 +36,9 @@
         <div id="invoice-header">
           <h4 > <strong>Guul Alle Fuel Station & Supermarket </strong></h4>
           <h4 > Hargeisa, Somaliland </h4>
-          <h4 > Tel: 51548/4786525 </h4>
-        </div>
+            <h4 > Hargeisa, Somaliland </h4>
+            <h4 > Mobile: 4054623 </h4>
+            <h4 > Zaad: 404384  E-dahab: 27403 </h4>        </div>
         <br>
       <div id="details" class="clearfix">
           <div>Z-report No. : {{ $data['zReport'] }}</div>
@@ -80,7 +81,8 @@
               <div id="invoice-header">
                 <h4 > <strong>Guul Alle Fuel Station & Supermarket </strong></h4>
                 <h4 > Hargeisa, Somaliland </h4>
-                <h4 > Tel: 51548/4786525 </h4>
+                <h4 > Mobile: 4054623 </h4>
+                <h4 > Zaad: 404384  E-dahab: 27403 </h4>
               </div>
               <br>
                   <div id="details" class="clearfix">
